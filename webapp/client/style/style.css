@@ -1,0 +1,47 @@
+body {
+  background-image:  url("https://wallpaperscraft.com/image/building_skyscrapers_light_sky_metropolis_47828_1920x1080.jpg");
+}
+.search {
+  position:absolute;
+    right:5%;
+    top: 10%;
+    background-color:white;
+    color:black;
+}
+
+.logo {
+  position: absolute;
+    left: 0%;
+    top: 5%;
+}
+
+.inputbar{
+  width: 500px;
+}
+
+
+.gridblocks {
+  display: inline-block;
+  position: relative;
+  width: 150px;
+  height: 200px;
+  margin: 20px;
+  z-index: 2;
+}
+
+.gridblocks .caption {
+  position: absolute;
+    width: 150px;
+    height: 50px;
+    bottom: 40px;
+    left: 0px;
+    color: #ffffff;
+	  text-align:center;
+    opacity:0.8;
+    font-size: 0.7em;
+}
+
+.images {
+  width: 150px;
+  height: 200px;
+}

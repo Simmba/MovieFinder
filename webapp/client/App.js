@@ -63,7 +63,7 @@ class App extends React.Component {
     const apiCallSuc = this.state.popular.results;
     return (
       <div>
-        <Banner searchCallBack={this.searchData}/>
+        <Banner className={"parent"} searchCallBack={this.searchData}/>
         {this.state.loaded && !this.state.selected &&
           apiCallSuc.map((result, i) => {
             return (

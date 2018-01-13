@@ -29,11 +29,16 @@ class PopularMovies extends React.Component{
     const url = "https://image.tmdb.org/t/p/w300/"+movie.poster_path
     
     return (
-      <div>
-      <h3 href="#" onClick={() => this.selectMovie(movie.id)} >{movie.title}</h3>
-      <img href="#" onClick={() => this.selectMovie(movie.id)} src={url} onMouseEnter={this.mouseHover} onMouseLeave={this.mouseHover} />
-      {this.state.hover && 
-        <p>{movie.overview} </p>}
+      <div className={"gridblocks"}>
+      
+      <img className={'images'} href="#" onClick={() => this.selectMovie(movie.id)} src={url} onMouseEnter={this.mouseHover} onMouseLeave={this.mouseHover} />
+      <div className={'caption'}>
+        {this.state.hover &&
+        <span> 
+        <h5 href="#" onClick={() => this.selectMovie(movie.id)} >{movie.title}</h5>
+        <p>{movie.overview} </p>
+        </span>}
+      </div>
       </div>
     )
   }

@@ -9,8 +9,7 @@ class Banner extends React.Component {
   render() {
     return (
       <div>
-      <img src={'https://lattice.com/img/lattice-logo-color.svg'}/>
-      <img src={'http://www.mangangraphics.co.nz/themes/trade-dark/images/banner-pholder.jpg'}/>
+      <img className={'logo'} src={'https://lattice.com/img/lattice-logo-color.svg'}/>
       <Search searchCallBack={this.props.searchCallBack} />
       </div>
     )
