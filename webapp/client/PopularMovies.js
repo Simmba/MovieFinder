@@ -29,8 +29,8 @@ class PopularMovies extends React.Component{
     const url = "https://image.tmdb.org/t/p/w300/"+movie.poster_path
     
     return (
-      <div className={"gridblocks"}>
       
+      <div className={"gridblocks"}>
       <img className={'images'} href="#" onClick={() => this.selectMovie(movie.id)} src={url} onMouseEnter={this.mouseHover} onMouseLeave={this.mouseHover} />
       <div className={'caption'}>
         {this.state.hover &&

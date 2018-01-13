@@ -9,6 +9,9 @@ body {
     color:black;
 }
 
+.banner {
+  position: relative;
+}
 .logo {
   position: absolute;
     left: 0%;
@@ -19,14 +22,12 @@ body {
   width: 500px;
 }
 
-
 .gridblocks {
   display: inline-block;
   position: relative;
   width: 150px;
   height: 200px;
   margin: 20px;
-  z-index: 2;
 }
 
 .gridblocks .caption {

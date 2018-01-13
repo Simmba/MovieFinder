@@ -18379,7 +18379,7 @@ var App = function (_React$Component) {
       }).then(function (results) {
         return results.json();
       }).then(function (data) {
-        _this3.setState({ popular: data, loaded: true });
+        _this3.setState({ popular: data, loaded: true, selected: false });
       });
     }
   }, {
@@ -18409,7 +18409,7 @@ var App = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         null,
-        _react2.default.createElement(_Banner2.default, { className: "parent", searchCallBack: this.searchData }),
+        _react2.default.createElement(_Banner2.default, { className: "banner", searchCallBack: this.searchData }),
         this.state.loaded && !this.state.selected && apiCallSuc.map(function (result, i) {
           return _react2.default.createElement(_PopularMovies2.default, { result: result, key: result.poster_path, id: i, select: _this5.selectedMovie });
         }),
@@ -18722,7 +18722,7 @@ exports = module.exports = __webpack_require__(34)(false);
 
 
 // module
-exports.push([module.i, "body {\n  background-image:  url(\"https://wallpaperscraft.com/image/building_skyscrapers_light_sky_metropolis_47828_1920x1080.jpg\");\n}\n.search {\n  position:absolute;\n    right:5%;\n    top: 10%;\n    background-color:white;\n    color:black;\n}\n\n.logo {\n  position: absolute;\n    left: 0%;\n    top: 5%;\n}\n\n.inputbar{\n  width: 500px;\n}\n\n\n.gridblocks {\n  display: inline-block;\n  position: relative;\n  width: 150px;\n  height: 200px;\n  margin: 20px;\n  z-index: 2;\n}\n\n.gridblocks .caption {\n  position: absolute;\n    width: 150px;\n    height: 50px;\n    bottom: 40px;\n    left: 0px;\n    color: #ffffff;\n\t  text-align:center;\n    opacity:0.8;\n    font-size: 0.7em;\n}\n\n.images {\n  width: 150px;\n  height: 200px;\n}", ""]);
+exports.push([module.i, "body {\n  background-image:  url(\"https://wallpaperscraft.com/image/building_skyscrapers_light_sky_metropolis_47828_1920x1080.jpg\");\n}\n.search {\n  position:absolute;\n    right:5%;\n    top: 10%;\n    background-color:white;\n    color:black;\n}\n\n.banner {\n  position: relative;\n}\n.logo {\n  position: absolute;\n    left: 0%;\n    top: 5%;\n}\n\n.inputbar{\n  width: 500px;\n}\n\n.gridblocks {\n  display: inline-block;\n  position: relative;\n  width: 150px;\n  height: 200px;\n  margin: 20px;\n}\n\n.gridblocks .caption {\n  position: absolute;\n    width: 150px;\n    height: 50px;\n    bottom: 40px;\n    left: 0px;\n    color: #ffffff;\n\t  text-align:center;\n    opacity:0.8;\n    font-size: 0.7em;\n}\n\n.images {\n  width: 150px;\n  height: 200px;\n}", ""]);
 
 // exports
 

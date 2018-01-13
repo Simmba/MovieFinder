@@ -39,7 +39,7 @@ class App extends React.Component {
         return results.json();
       })
       .then(data => {
-        this.setState({ popular: data, loaded: true });
+        this.setState({ popular: data, loaded: true, selected: false });
       });
   }
   selectedMovie(value) {
@@ -63,7 +63,7 @@ class App extends React.Component {
     const apiCallSuc = this.state.popular.results;
     return (
       <div>
-        <Banner className={"parent"} searchCallBack={this.searchData}/>
+        <Banner className={"banner"} searchCallBack={this.searchData}/>
         {this.state.loaded && !this.state.selected &&
           apiCallSuc.map((result, i) => {
             return (
