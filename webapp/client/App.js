@@ -1,16 +1,19 @@
 import React from 'react';
 import PopularMovies from './PopularMovies';
-import Search from './Search';
-import { Carousel } from 'react-bootstrap';
-
+import Movie from './Movie';
+import Banner from './Banner';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       popular: {},
-      searchState: false
-    };
+      loaded: false,
+      selected: false,
+      movie: {},
+    }
+    this.searchData = this.searchData.bind(this);
+    this.selectedMovie = this.selectedMovie.bind(this);
   }
 
   componentWillMount() {
@@ -19,8 +22,40 @@ class App extends React.Component {
         return results.json();
       })
       .then(data => {
-        this.setState({ popular: data });
-        //console.log(this.state.popular.results[0].title)
+        this.setState({ popular: data, loaded: true });
+      });
+  }
+
+  searchData(value) {
+    var data = { data: value };
+    fetch('/search', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      })
+    })
+      .then(results => {
+        return results.json();
+      })
+      .then(data => {
+        this.setState({ popular: data, loaded: true });
+      });
+  }
+  selectedMovie(value) {
+    var datas = { data: value };
+    fetch('/movie', {
+      method: 'POST',
+      body: JSON.stringify(datas),
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      })
+    })
+      .then(results => {
+        return results.json();
+      })
+      .then(data => {
+        this.setState({ movie: data, loaded: true, selected: true });
       });
   }
 
@@ -28,14 +63,14 @@ class App extends React.Component {
     const apiCallSuc = this.state.popular.results;
     return (
       <div>
-        <Search />
-        <Carousel>
-          {apiCallSuc
-            ? this.state.popular.results.map(result => {
-                return <PopularMovies result={result} key={result.poster_path} />;
-              })
-            : ''}
-          </Carousel>
+        <Banner searchCallBack={this.searchData}/>
+        {this.state.loaded && !this.state.selected &&
+          apiCallSuc.map((result, i) => {
+            return (
+              <PopularMovies result={result} key={result.poster_path} id={i} select={this.selectedMovie} />
+            );
+          })}
+        {this.state.loaded && this.state.selected && <Movie movie={this.state.movie} />}
       </div>
     );
   }
