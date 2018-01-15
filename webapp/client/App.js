@@ -62,14 +62,16 @@ class App extends React.Component {
   render() {
     const apiCallSuc = this.state.popular.results;
     return (
-      <div>
+      <div className={"master"}>
         <Banner className={"banner"} searchCallBack={this.searchData}/>
+        <div className={"panel"}>
         {this.state.loaded && !this.state.selected &&
           apiCallSuc.map((result, i) => {
             return (
-              <PopularMovies result={result} key={result.poster_path} id={i} select={this.selectedMovie} />
+              <PopularMovies  result={result} key={result.poster_path} id={i} select={this.selectedMovie} />
             );
           })}
+        </div>
         {this.state.loaded && this.state.selected && <Movie movie={this.state.movie} />}
       </div>
     );

@@ -20,7 +20,7 @@ handleSubmit(event) {
 }
   render() {
     return (
-      <div className={'search'}> 
+      <div> 
       <input className={'inputbar'} type="text" placeholder="What would you like to see?" value={this.state.value} onChange={this.handleChange} />
       <input className={'inputbutton'} type="submit" value="Submit" onClick={this.handleSubmit}/>
       </div>
