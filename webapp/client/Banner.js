@@ -8,12 +8,12 @@ class Banner extends React.Component {
 
   render() {
     return (
-      <div>
+      <span>
       <img className={'logo'} src={'https://lattice.com/img/lattice-logo-color.svg'}/>
       <div className={'search'}>
       <Search searchCallBack={this.props.searchCallBack} />
       </div>
-      </div>
+      </span>
     )
   }
 }

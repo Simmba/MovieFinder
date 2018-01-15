@@ -18415,9 +18415,9 @@ var App = function (_React$Component) {
           { className: "panel" },
           this.state.loaded && !this.state.selected && apiCallSuc.map(function (result, i) {
             return _react2.default.createElement(_PopularMovies2.default, { result: result, key: result.poster_path, id: i, select: _this5.selectedMovie });
-          })
-        ),
-        this.state.loaded && this.state.selected && _react2.default.createElement(_Movie2.default, { movie: this.state.movie })
+          }),
+          this.state.loaded && this.state.selected && _react2.default.createElement(_Movie2.default, { movie: this.state.movie })
+        )
       );
     }
   }]);
@@ -18571,7 +18571,7 @@ var Movie = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        null,
+        { className: "movie" },
         _react2.default.createElement(
           'h3',
           null,
@@ -18635,7 +18635,7 @@ var Banner = function (_React$Component) {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
-        'div',
+        'span',
         null,
         _react2.default.createElement('img', { className: 'logo', src: 'https://lattice.com/img/lattice-logo-color.svg' }),
         _react2.default.createElement(
@@ -18708,7 +18708,7 @@ var Search = function (_React$Component) {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
-        'div',
+        'span',
         null,
         _react2.default.createElement('input', { className: 'inputbar', type: 'text', placeholder: 'What would you like to see?', value: this.state.value, onChange: this.handleChange }),
         _react2.default.createElement('input', { className: 'inputbutton', type: 'submit', value: 'Submit', onClick: this.handleSubmit })
@@ -18730,7 +18730,7 @@ exports = module.exports = __webpack_require__(34)(false);
 
 
 // module
-exports.push([module.i, "body {\n  background-image:  url(\"https://wallpaperscraft.com/image/building_skyscrapers_light_sky_metropolis_47828_1920x1080.jpg\");\n}\n\n.master {\n  display: grid;\n  grid-template-columns: 25%;\n  grid-template-rows: auto;\n  grid-template-areas:\n    \"logo logo\"\n    \"body body\"\n    \"body body\"\n    \"footer footer\";\n}\n.search {\n    position: absolute;\n    background-color:white;\n    color:black;\n    right: 5%;\n    top: 10%;\n}\n\n.inputbar{\n  position: relative;\n  width: 200px;\n}\n\n.inputbutton{\n  position: relative;\n\n}\n\n.panel{\n  background-color: rgba(0,0,0,0.3);\n  border-radius: 5pc;\n  grid-area: body;\n}\n\n.banner {\n  position: relative;\n  grid-area: logo;\n}\n.logo {\n  position: relative;\n}\n\n\n\n.gridblocks {\n  display: inline-block;\n  position: relative;\n  width: 150px;\n  height: 200px;\n  margin: 40px;\n  grid-area: body;\n}\n\n.gridblocks:hover {\n  backbackground-color: rgba(192,192,192,0.3);\n  border-radius: 5pc;\n}\n\n.gridblocks .caption {\n  position: absolute;\n    width: 150px;\n    height: 50px;\n    bottom: 40px;\n    left: 0px;\n    color: #ffffff;\n\t  text-align:center;\n    opacity:0.8;\n    font-size: 0.7em;\n}\n\n.images {\n  width: 150px;\n  height: 200px;\n}", ""]);
+exports.push([module.i, "body {\n  background-image: url('https://wallpaperscraft.com/image/building_skyscrapers_light_sky_metropolis_47828_1920x1080.jpg');\n}\n\n.master {\n  display: grid;\n  grid-template-columns: 25%;\n  grid-template-rows: auto;\n  grid-template-areas:\n    'logo logo'\n    'body body'\n    'body body'\n    'footer footer';\n    font-family: 'News Cycle', sans-serif;\n}\n.search {\n  position: relative;\n  color: black;\n  top: -2px;\n}\n\n.inputbar {\n  position: relative;\n  width: 200px;\n}\n\n.inputbutton {\n  position: relative;\n}\n\n.panel {\n  background-color: rgba(0, 0, 0, 0.3);\n  border-radius: 5pc;\n  grid-area: body;\n}\n\n.banner {\n  position: relative;\n  grid-area: logo;\n}\n.logo {\n  position: relative;\n}\n\n.gridblocks {\n  display: inline-block;\n  position: relative;\n  width: 200px;\n  height: 250px;\n  margin: 40px;\n  grid-area: body;\n}\n\n.gridblocks:hover {\n  background-color: rgba(192, 192, 192, 0.3);\n  transform: scale(1.5);\n}\n\n.gridblocks .caption {\n  position: absolute;\n  width: 150px;\n  height: 50px;\n  bottom: 40px;\n  left: 0px;\n  color: #ffffff;\n  text-align: center;\n  opacity: 0.8;\n  font-size: 0.7em;\n}\n\n.images {\n  width: 100%;\n  height: 100%;\n  position: relative;\n  display: block;\n  margin: 0 auto;\n}\n\n.movie {\n  color: white;\n  position: relative;\n}\n", ""]);
 
 // exports
 

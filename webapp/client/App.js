@@ -71,8 +71,8 @@ class App extends React.Component {
               <PopularMovies  result={result} key={result.poster_path} id={i} select={this.selectedMovie} />
             );
           })}
-        </div>
         {this.state.loaded && this.state.selected && <Movie movie={this.state.movie} />}
+        </div>
       </div>
     );
   }

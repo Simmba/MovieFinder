@@ -10,7 +10,7 @@ class Movie extends React.Component {
     const url = 'https://image.tmdb.org/t/p/w300/' + movie.poster_path;
 
     return (
-      <div>
+      <div className={"movie"}>
         <h3>{movie.title}</h3>
         <img src={url} />
         <p>{movie.overview} </p>
