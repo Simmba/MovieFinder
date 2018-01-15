@@ -1,5 +1,6 @@
 body {
   background-image: url('https://wallpaperscraft.com/image/building_skyscrapers_light_sky_metropolis_47828_1920x1080.jpg');
+  background-attachment: fixed;
 }
 
 .master {
@@ -29,9 +30,10 @@ body {
 }
 
 .panel {
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.6);
   border-radius: 5pc;
   grid-area: body;
+  text-align:center;
 }
 
 .banner {
@@ -79,4 +81,5 @@ body {
 .movie {
   color: white;
   position: relative;
+  margin: auto;
 }

@@ -1,8 +1,31 @@
 import React from 'react';
+import Review from './Review';
 
 class Movie extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      review: '',
+      loaded: false,
+    }
+  }
+  componentWillMount() {
+    var id = {id: this.props.movie.id};
+    fetch('/movie/review', {
+      method: 'POST',
+      body: JSON.stringify(id),
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      })
+    })
+      .then(results => {
+        return results.json();
+      })
+      .then(data => {
+        this.setState({ review: data, loaded: true});
+        console.log(this.state.review,'yo yo yo');
+      });
+      
   }
 
   render() {
@@ -11,9 +34,15 @@ class Movie extends React.Component {
 
     return (
       <div className={"movie"}>
-        <h3>{movie.title}</h3>
+        <h1>{movie.title}</h1>
         <img src={url} />
-        <p>{movie.overview} </p>
+        <h2>{movie.overview} </h2>
+        {this.state.loaded &&
+          this.state.review.results.map((result, i) => {
+            return (
+              <Review result={result} key={result.id} />
+            );
+          })}
       </div>
     );
   }

@@ -18546,6 +18546,10 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _Review = __webpack_require__(37);
+
+var _Review2 = _interopRequireDefault(_Review);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -18560,10 +18564,35 @@ var Movie = function (_React$Component) {
   function Movie(props) {
     _classCallCheck(this, Movie);
 
-    return _possibleConstructorReturn(this, (Movie.__proto__ || Object.getPrototypeOf(Movie)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (Movie.__proto__ || Object.getPrototypeOf(Movie)).call(this, props));
+
+    _this.state = {
+      review: '',
+      loaded: false
+    };
+    return _this;
   }
 
   _createClass(Movie, [{
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      var _this2 = this;
+
+      var id = { id: this.props.movie.id };
+      fetch('/movie/review', {
+        method: 'POST',
+        body: JSON.stringify(id),
+        headers: new Headers({
+          'Content-Type': 'application/json'
+        })
+      }).then(function (results) {
+        return results.json();
+      }).then(function (data) {
+        _this2.setState({ review: data, loaded: true });
+        console.log(_this2.state.review, 'yo yo yo');
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
       var movie = this.props.movie;
@@ -18573,17 +18602,20 @@ var Movie = function (_React$Component) {
         'div',
         { className: "movie" },
         _react2.default.createElement(
-          'h3',
+          'h1',
           null,
           movie.title
         ),
         _react2.default.createElement('img', { src: url }),
         _react2.default.createElement(
-          'p',
+          'h2',
           null,
           movie.overview,
           ' '
-        )
+        ),
+        this.state.loaded && this.state.review.results.map(function (result, i) {
+          return _react2.default.createElement(_Review2.default, { result: result, key: result.id });
+        })
       );
     }
   }]);
@@ -18730,7 +18762,7 @@ exports = module.exports = __webpack_require__(34)(false);
 
 
 // module
-exports.push([module.i, "body {\n  background-image: url('https://wallpaperscraft.com/image/building_skyscrapers_light_sky_metropolis_47828_1920x1080.jpg');\n}\n\n.master {\n  display: grid;\n  grid-template-columns: 25%;\n  grid-template-rows: auto;\n  grid-template-areas:\n    'logo logo'\n    'body body'\n    'body body'\n    'footer footer';\n    font-family: 'News Cycle', sans-serif;\n}\n.search {\n  position: relative;\n  color: black;\n  top: -2px;\n}\n\n.inputbar {\n  position: relative;\n  width: 200px;\n}\n\n.inputbutton {\n  position: relative;\n}\n\n.panel {\n  background-color: rgba(0, 0, 0, 0.3);\n  border-radius: 5pc;\n  grid-area: body;\n}\n\n.banner {\n  position: relative;\n  grid-area: logo;\n}\n.logo {\n  position: relative;\n}\n\n.gridblocks {\n  display: inline-block;\n  position: relative;\n  width: 200px;\n  height: 250px;\n  margin: 40px;\n  grid-area: body;\n}\n\n.gridblocks:hover {\n  background-color: rgba(192, 192, 192, 0.3);\n  transform: scale(1.5);\n}\n\n.gridblocks .caption {\n  position: absolute;\n  width: 150px;\n  height: 50px;\n  bottom: 40px;\n  left: 0px;\n  color: #ffffff;\n  text-align: center;\n  opacity: 0.8;\n  font-size: 0.7em;\n}\n\n.images {\n  width: 100%;\n  height: 100%;\n  position: relative;\n  display: block;\n  margin: 0 auto;\n}\n\n.movie {\n  color: white;\n  position: relative;\n}\n", ""]);
+exports.push([module.i, "body {\n  background-image: url('https://wallpaperscraft.com/image/building_skyscrapers_light_sky_metropolis_47828_1920x1080.jpg');\n  background-attachment: fixed;\n}\n\n.master {\n  display: grid;\n  grid-template-columns: 25%;\n  grid-template-rows: auto;\n  grid-template-areas:\n    'logo logo'\n    'body body'\n    'body body'\n    'footer footer';\n    font-family: 'News Cycle', sans-serif;\n}\n.search {\n  position: relative;\n  color: black;\n  top: -2px;\n}\n\n.inputbar {\n  position: relative;\n  width: 200px;\n}\n\n.inputbutton {\n  position: relative;\n}\n\n.panel {\n  background-color: rgba(0, 0, 0, 0.6);\n  border-radius: 5pc;\n  grid-area: body;\n  text-align:center;\n}\n\n.banner {\n  position: relative;\n  grid-area: logo;\n}\n.logo {\n  position: relative;\n}\n\n.gridblocks {\n  display: inline-block;\n  position: relative;\n  width: 200px;\n  height: 250px;\n  margin: 40px;\n  grid-area: body;\n}\n\n.gridblocks:hover {\n  background-color: rgba(192, 192, 192, 0.3);\n  transform: scale(1.5);\n}\n\n.gridblocks .caption {\n  position: absolute;\n  width: 150px;\n  height: 50px;\n  bottom: 40px;\n  left: 0px;\n  color: #ffffff;\n  text-align: center;\n  opacity: 0.8;\n  font-size: 0.7em;\n}\n\n.images {\n  width: 100%;\n  height: 100%;\n  position: relative;\n  display: block;\n  margin: 0 auto;\n}\n\n.movie {\n  color: white;\n  position: relative;\n  margin: auto;\n}\n", ""]);
 
 // exports
 
@@ -19283,6 +19315,67 @@ module.exports = function (css) {
 	return fixedCss;
 };
 
+
+/***/ }),
+/* 37 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Review = function (_React$Component) {
+  _inherits(Review, _React$Component);
+
+  function Review(props) {
+    _classCallCheck(this, Review);
+
+    return _possibleConstructorReturn(this, (Review.__proto__ || Object.getPrototypeOf(Review)).call(this, props));
+  }
+
+  _createClass(Review, [{
+    key: 'render',
+    value: function render() {
+      var review = this.props.result;
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'h4',
+          null,
+          review.author,
+          ':'
+        ),
+        _react2.default.createElement(
+          'p',
+          null,
+          review.content
+        )
+      );
+    }
+  }]);
+
+  return Review;
+}(_react2.default.Component);
+
+exports.default = Review;
 
 /***/ })
 /******/ ]);

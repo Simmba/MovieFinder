@@ -49,3 +49,15 @@ app.post('/movie', (req, res) =>{
   })
 });
 
+app.post('/movie/review', (req, res) =>{
+  request('https://api.themoviedb.org/3/movie/'+req.body.id+'/reviews?api_key='+key.key+'&language=en-US&page=1', (err, response, body)=>{
+    if(err){
+      res.send(err);
+    }
+    else {
+      const reviews = JSON.parse(body);
+      res.send(reviews);
+    }
+  })
+});
+
