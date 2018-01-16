@@ -1,4 +1,5 @@
 import React from 'react';
+import { Popover, OverlayTrigger} from 'react-bootstrap';
 
 class PopularMovies extends React.Component{
   constructor(props){
@@ -7,6 +8,7 @@ class PopularMovies extends React.Component{
     this.state = {
       hover: false
     };
+   
   }
   mouseHover() {
     this.setState(this.changeHover);
@@ -27,18 +29,23 @@ class PopularMovies extends React.Component{
   render() {
     const movie = this.props.result;
     const url = "https://image.tmdb.org/t/p/w300/"+movie.poster_path
+    const popoverHoverFocus = (
+      <Popover id="popover-trigger-hover-focus" title={movie.title}>
+        {this.props.result.overview}
+      </Popover>
+    );
     
     return (
       
       <div className={"gridblocks"}>
+        <OverlayTrigger
+        trigger={['hover', 'focus']}
+        placement="bottom"
+        overlay={popoverHoverFocus}
+      >
       <img className={'images'} href="#" onClick={() => this.selectMovie(movie.id)} src={url} onMouseEnter={this.mouseHover} onMouseLeave={this.mouseHover} />
-      <div className={'caption'}>
-        {this.state.hover &&
-        <span> 
-        <h5 href="#" onClick={() => this.selectMovie(movie.id)} >{movie.title}</h5>
-        <p>{movie.overview} </p>
-        </span>}
-      </div>
+      </OverlayTrigger>
+        
       </div>
     )
   }
