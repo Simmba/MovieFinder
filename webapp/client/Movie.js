@@ -37,6 +37,7 @@ class Movie extends React.Component {
         <h1>{movie.title}</h1>
         <img src={url} />
         <h2>{movie.overview} </h2>
+        <h3>REVIEWS</h3>
         {this.state.loaded &&
           this.state.review.results.map((result, i) => {
             return (
