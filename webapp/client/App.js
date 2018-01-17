@@ -10,6 +10,7 @@ class App extends React.Component {
       popular: {},
       loaded: false,
       selected: false,
+      title: "Popular:",
       movie: {},
     }
     this.searchData = this.searchData.bind(this);
@@ -39,7 +40,7 @@ class App extends React.Component {
         return results.json();
       })
       .then(data => {
-        this.setState({ popular: data, loaded: true, selected: false });
+        this.setState({ popular: data, loaded: true, selected: false, title: 'Search results for: ' + value });
       });
   }
   selectedMovie(value) {
@@ -55,7 +56,7 @@ class App extends React.Component {
         return results.json();
       })
       .then(data => {
-        this.setState({ movie: data, loaded: true, selected: true });
+        this.setState({ movie: data, loaded: true, selected: true, title: "" });
       });
   }
 
@@ -65,6 +66,7 @@ class App extends React.Component {
       <div className={"master"}>
         <Banner className={"banner"} searchCallBack={this.searchData}/>
         <div className={"panel"}>
+        <h2 className={"title"}>{this.state.title}</h2>
         {this.state.loaded && !this.state.selected &&
           apiCallSuc.map((result, i) => {
             return (

@@ -6,11 +6,11 @@ class Movie extends React.Component {
     super(props);
     this.state = {
       review: '',
-      loaded: false,
-    }
+      loaded: false
+    };
   }
   componentWillMount() {
-    var id = {id: this.props.movie.id};
+    var id = { id: this.props.movie.id };
     fetch('/movie/review', {
       method: 'POST',
       body: JSON.stringify(id),
@@ -22,27 +22,28 @@ class Movie extends React.Component {
         return results.json();
       })
       .then(data => {
-        this.setState({ review: data, loaded: true});
-        console.log(this.state.review,'yo yo yo');
+        this.setState({ review: data, loaded: true });
+        console.log(this.state.review, 'yo yo yo');
       });
-      
   }
 
   render() {
     const movie = this.props.movie;
     const url = 'https://image.tmdb.org/t/p/w300/' + movie.poster_path;
-
     return (
-      <div className={"movie"}>
+      <div className={'movie'}>
         <h1>{movie.title}</h1>
+        <p>{movie.release_date}</p>
         <img src={url} />
-        <h2>{movie.overview} </h2>
+        <h4>{movie.overview} </h4>
+        <p>Vote Average: {movie.vote_average}</p>
+        <p>Votes: {movie.vote_count}</p>
+        <hr />
         <h3>REVIEWS</h3>
+        <hr />
         {this.state.loaded &&
           this.state.review.results.map((result, i) => {
-            return (
-              <Review result={result} key={result.id} />
-            );
+            return <Review result={result} key={result.id} />;
           })}
       </div>
     );

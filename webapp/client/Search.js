@@ -8,10 +8,17 @@ class Search extends React.Component{
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
   }
 
 handleChange(event) {
   this.setState({value: event.target.value})
+}
+
+handleKeyPress(e) {
+  if (e.key === 'Enter') {
+    this.handleSubmit();
+  }
 }
 
 handleSubmit(event) {
@@ -21,8 +28,8 @@ handleSubmit(event) {
   render() {
     return (
       <span> 
-      <input className={'inputbar'} type="text" placeholder="What would you like to see?" value={this.state.value} onChange={this.handleChange} />
-      <input className={'inputbutton'} type="submit" value="Submit" onClick={this.handleSubmit}/>
+      <input className={'inputbar'} type="text" placeholder="What would you like to see?" value={this.state.value} onChange={this.handleChange} onKeyPress={this.handleKeyPress} />
+      <input className={'inputbutton'} type="submit" value="Submit" onClick={this.handleSubmit} />
       </span>
     )
   }

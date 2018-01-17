@@ -40,7 +40,7 @@ class PopularMovies extends React.Component{
       <div className={"gridblocks"}>
         <OverlayTrigger
         trigger={['hover', 'focus']}
-        placement="bottom"
+        placement={"bottom"}
         overlay={popoverHoverFocus}
       >
       <img className={'images'} href="#" onClick={() => this.selectMovie(movie.id)} src={url} onMouseEnter={this.mouseHover} onMouseLeave={this.mouseHover} />

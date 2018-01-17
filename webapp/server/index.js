@@ -44,6 +44,7 @@ app.post('/movie', (req, res) =>{
     }
     else {
       const search = JSON.parse(body);
+      console.log(search);
       res.send(search);
     }
   })

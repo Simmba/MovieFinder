@@ -18348,6 +18348,7 @@ var App = function (_React$Component) {
       popular: {},
       loaded: false,
       selected: false,
+      title: "Popular:",
       movie: {}
     };
     _this.searchData = _this.searchData.bind(_this);
@@ -18381,7 +18382,7 @@ var App = function (_React$Component) {
       }).then(function (results) {
         return results.json();
       }).then(function (data) {
-        _this3.setState({ popular: data, loaded: true, selected: false });
+        _this3.setState({ popular: data, loaded: true, selected: false, title: 'Search results for: ' + value });
       });
     }
   }, {
@@ -18399,7 +18400,7 @@ var App = function (_React$Component) {
       }).then(function (results) {
         return results.json();
       }).then(function (data) {
-        _this4.setState({ movie: data, loaded: true, selected: true });
+        _this4.setState({ movie: data, loaded: true, selected: true, title: "" });
       });
     }
   }, {
@@ -18415,6 +18416,11 @@ var App = function (_React$Component) {
         _react2.default.createElement(
           'div',
           { className: "panel" },
+          _react2.default.createElement(
+            'h2',
+            { className: "title" },
+            this.state.title
+          ),
           this.state.loaded && !this.state.selected && apiCallSuc.map(function (result, i) {
             return _react2.default.createElement(_PopularMovies2.default, { result: result, key: result.poster_path, id: i, select: _this5.selectedMovie });
           }),
@@ -18510,7 +18516,7 @@ var PopularMovies = function (_React$Component) {
           _reactBootstrap.OverlayTrigger,
           {
             trigger: ['hover', 'focus'],
-            placement: 'bottom',
+            placement: "bottom",
             overlay: popoverHoverFocus
           },
           _react2.default.createElement('img', { className: 'images', href: '#', onClick: function onClick() {
@@ -18594,27 +18600,45 @@ var Movie = function (_React$Component) {
     value: function render() {
       var movie = this.props.movie;
       var url = 'https://image.tmdb.org/t/p/w300/' + movie.poster_path;
-
       return _react2.default.createElement(
         'div',
-        { className: "movie" },
+        { className: 'movie' },
         _react2.default.createElement(
           'h1',
           null,
           movie.title
         ),
+        _react2.default.createElement(
+          'p',
+          null,
+          movie.release_date
+        ),
         _react2.default.createElement('img', { src: url }),
         _react2.default.createElement(
-          'h2',
+          'h4',
           null,
           movie.overview,
           ' '
         ),
         _react2.default.createElement(
+          'p',
+          null,
+          'Vote Average: ',
+          movie.vote_average
+        ),
+        _react2.default.createElement(
+          'p',
+          null,
+          'Votes: ',
+          movie.vote_count
+        ),
+        _react2.default.createElement('hr', null),
+        _react2.default.createElement(
           'h3',
           null,
           'REVIEWS'
         ),
+        _react2.default.createElement('hr', null),
         this.state.loaded && this.state.review.results.map(function (result, i) {
           return _react2.default.createElement(_Review2.default, { result: result, key: result.id });
         })
@@ -18724,6 +18748,7 @@ var Search = function (_React$Component) {
     };
     _this.handleChange = _this.handleChange.bind(_this);
     _this.handleSubmit = _this.handleSubmit.bind(_this);
+    _this.handleKeyPress = _this.handleKeyPress.bind(_this);
     return _this;
   }
 
@@ -18731,6 +18756,13 @@ var Search = function (_React$Component) {
     key: 'handleChange',
     value: function handleChange(event) {
       this.setState({ value: event.target.value });
+    }
+  }, {
+    key: 'handleKeyPress',
+    value: function handleKeyPress(e) {
+      if (e.key === 'Enter') {
+        this.handleSubmit();
+      }
     }
   }, {
     key: 'handleSubmit',
@@ -18744,7 +18776,7 @@ var Search = function (_React$Component) {
       return _react2.default.createElement(
         'span',
         null,
-        _react2.default.createElement('input', { className: 'inputbar', type: 'text', placeholder: 'What would you like to see?', value: this.state.value, onChange: this.handleChange }),
+        _react2.default.createElement('input', { className: 'inputbar', type: 'text', placeholder: 'What would you like to see?', value: this.state.value, onChange: this.handleChange, onKeyPress: this.handleKeyPress }),
         _react2.default.createElement('input', { className: 'inputbutton', type: 'submit', value: 'Submit', onClick: this.handleSubmit })
       );
     }
@@ -18764,7 +18796,7 @@ exports = module.exports = __webpack_require__(34)(false);
 
 
 // module
-exports.push([module.i, "body {\n  background-image: url('https://wallpaperscraft.com/image/building_skyscrapers_light_sky_metropolis_47828_1920x1080.jpg');\n  background-attachment: fixed;\n}\n\n.master {\n  display: grid;\n  grid-template-columns: 25%;\n  grid-template-rows: auto;\n  grid-template-areas:\n    'logo logo'\n    'body body'\n    'body body'\n    'footer footer';\n    font-family: 'News Cycle', sans-serif;\n}\n.search {\n  position: relative;\n  color: black;\n  top: -2px;\n}\n\n.inputbar {\n  position: relative;\n  width: 200px;\n}\n\n.inputbutton {\n  position: relative;\n}\n\n.panel {\n  background-color: rgba(0, 0, 0, 0.6) !important;\n  border-radius: 5pc;\n  grid-area: body;\n  text-align:center;\n}\n\n.banner {\n  position: relative;\n  grid-area: logo;\n}\n.logo {\n  position: relative;\n}\n\n.gridblocks {\n  display: inline-block;\n  position: relative;\n  width: 200px;\n  height: 250px;\n  margin: 40px;\n  grid-area: body;\n}\n\n.gridblocks:hover {\n  background-color: rgba(192, 192, 192, 0.3);\n  transform: scale(1.5);\n}\n\n\n.images {\n  width: 100%;\n  height: 100%;\n  position: relative;\n  display: block;\n  margin: 0 auto;\n}\n\n.movie {\n  color: white;\n  position: relative;\n  margin: auto;\n}\n", ""]);
+exports.push([module.i, "body {\n  background-image: url('https://wallpaperscraft.com/image/building_skyscrapers_light_sky_metropolis_47828_1920x1080.jpg');\n  background-attachment: fixed;\n}\n\n.master {\n  display: grid;\n  grid-template-columns: 25%;\n  grid-template-rows: auto;\n  grid-template-areas:\n    'logo logo'\n    'body body'\n    'body body'\n    'footer footer';\n  font-family: 'Libre Franklin', sans-serif;\n}\n\n.search {\n  position: relative;\n  color: black;\n  top: -2px;\n}\n\n.title {\n  color: whitesmoke;\n}\n\n.inputbar {\n  position: relative;\n  width: 200px;\n}\n\n.inputbutton {\n  position: relative;\n}\n\n.panel {\n  background-color: rgba(0, 0, 0, 0.6) !important;\n  border-radius: 5pc;\n  grid-area: body;\n  text-align: center;\n}\n\n.banner {\n  position: relative;\n  grid-area: logo;\n}\n\n.logo {\n  position: relative;\n}\n\n.gridblocks {\n  display: inline-block;\n  position: relative;\n  width: 200px;\n  height: 250px;\n  margin: 40px;\n  grid-area: body;\n}\n\n.gridblocks:hover {\n  background-color: rgba(192, 192, 192, 0.3);\n  transform: scale(1.5);\n}\n\n.images {\n  width: 100%;\n  height: 100%;\n  position: relative;\n  display: block;\n  margin: 0 auto;\n}\n\n.movie {\n  color: white;\n  position: relative;\n  margin: auto;\n}\n\n.review {\n  text-align: left;\n\n}", ""]);
 
 // exports
 
@@ -19358,7 +19390,7 @@ var Review = function (_React$Component) {
       var review = this.props.result;
       return _react2.default.createElement(
         'div',
-        null,
+        { className: 'review' },
         _react2.default.createElement(
           'h4',
           null,
