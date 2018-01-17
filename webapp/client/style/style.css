@@ -73,9 +73,11 @@ body {
 }
 
 .movie {
-  color: white;
+  color: whitesmoke;
   position: relative;
   margin: auto;
+  width: 65%;
+  font-size: 13px;
 }
 
 .review {
